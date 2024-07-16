@@ -10,7 +10,7 @@ dotenv.config();
 
 export async function setupServer() {
   const app = express();
-  const PORT = Number(env('PORT', '3000'));
+  const PORT = Number(env('PORT', '4000'));
 
   app.use(cors());
   app.use(pino({ transport: { target: 'pino-pretty' } }));
