@@ -59,7 +59,7 @@ export async function setupServer() {
     res.status(500).json({ message: 'Server error' });
   });
 
-  app.listen(PORT, '0.0.0.0', () => {
+  app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
 }
