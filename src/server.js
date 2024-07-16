@@ -15,6 +15,8 @@ export async function setupServer() {
   app.use(cors());
   app.use(pino({ transport: { target: 'pino-pretty' } }));
 
+  app.set('json spaces', 2);
+
   app.get('/contacts', async (req, res, next) => {
     try {
       const contacts = await getAllContacts();
