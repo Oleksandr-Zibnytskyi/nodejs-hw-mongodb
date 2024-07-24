@@ -19,7 +19,7 @@ router.get('/contacts/:contactId', ctrlWrapper(getContactById));
 
 router.post('/contacts', jsonParser, ctrlWrapper(createContact));
 
-router.put('/contacts/:contactId', jsonParser, ctrlWrapper(updateContact));
+router.patch('/contacts/:contactId', jsonParser, ctrlWrapper(updateContact));
 
 router.delete('/contacts/:contactId', ctrlWrapper(deleteContact));
 
