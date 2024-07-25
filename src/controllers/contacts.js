@@ -1,5 +1,11 @@
 import createHttpError from 'http-errors';
-import { getAllContacts, getContactById, createContact, updateContact, deleteContact, } from '../services/contacts.js';
+import {
+  getAllContacts,
+  getContactById,
+  createContact,
+  updateContact,
+  deleteContact,
+} from '../services/contacts.js';
 import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 import { parseSortParams } from '../utils/parseSortParams.js';
 import { parseFilterParams } from '../utils/parseFilterParams.js';
@@ -16,6 +22,7 @@ export const getContactsController = async (req, res) => {
     sortOrder,
     filter,
   });
+
   res.status(200).json({
     status: 200,
     message: 'Successfully found contacts!',
@@ -45,7 +52,6 @@ export const createContactController = async (req, res) => {
     message: 'Successfully created a contact!',
     data: contact,
   });
-
 };
 
 export const changeContactController = async (req, res, next) => {
@@ -61,7 +67,11 @@ export const changeContactController = async (req, res, next) => {
 
   res
     .status(200)
-    .send({ status: 200, message: 'Successfully patched a contact!', data: result });
+    .send({
+      status: 200,
+      message: 'Successfully patched a contact!',
+      data: result,
+    });
 };
 
 export const deleteContactController = async (req, res, next) => {
@@ -75,5 +85,3 @@ export const deleteContactController = async (req, res, next) => {
 
   res.status(204).send();
 };
-
-
