@@ -12,7 +12,7 @@ async function getAllContacts({
   const limit = perPage;
   const skip = (page - 1) * perPage;
 
-  const contactsQuery = Contact.find(filter);
+  const contactsQuery = Contact.find();
 
   if (filter.contactType) {
     contactsQuery.where('contactType').equals(filter.contactType);
@@ -22,7 +22,7 @@ async function getAllContacts({
   }
 
   const [contactsCount, contacts] = await Promise.all([
-    Contact.countDocuments(contactsQuery.getQuery()),
+    Contact.find().merge(contactsQuery).countDocuments(),
     contactsQuery
       .skip(skip)
       .limit(limit)
