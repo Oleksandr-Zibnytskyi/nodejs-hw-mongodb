@@ -6,25 +6,25 @@ import { createContactSchema, updateContactSchema } from '../validation/contacts
 import { isValidId } from '../middlewares/isValidId.js';
 
 import {
-  getContacts,
-  getContactById,
-  createContact,
-  updateContact,
-  deleteContact,
+  getContactsController,
+  getContactIdController,
+  createContactController,
+  changeContactController,
+  deleteContactController,
 } from '../controllers/contacts.js';
 import {ctrlWrapper} from '../utils/ctrlWrapper.js';
 
 const router = Router();
 const jsonParser = express.json();
 
-router.get('/contacts', ctrlWrapper(getContacts));
+router.get('/contacts', ctrlWrapper(getContactsController,));
 
-router.get('/contacts/:contactId', isValidId, ctrlWrapper(getContactById));
+router.get('/contacts/:contactId', isValidId, ctrlWrapper(getContactIdController));
 
-router.post('/contacts', jsonParser, validateBody(createContactSchema), ctrlWrapper(createContact));
+router.post('/contacts', jsonParser, validateBody(createContactSchema), ctrlWrapper(createContactController));
 
-router.patch('/contacts/:contactId', jsonParser, isValidId, validateBody(updateContactSchema), ctrlWrapper(updateContact));
+router.patch('/contacts/:contactId', jsonParser, isValidId, validateBody(updateContactSchema), ctrlWrapper(changeContactController));
 
-router.delete('/contacts/:contactId', isValidId, ctrlWrapper(deleteContact));
+router.delete('/contacts/:contactId', isValidId, ctrlWrapper(deleteContactController));
 
 export default router;

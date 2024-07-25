@@ -38,7 +38,7 @@ async function getAllContacts({
   };
 }
 
-function findById(id) {
+function getContactById(id) {
   return Contact.findById(id);
 }
 
@@ -56,7 +56,7 @@ function deleteContact(id) {
 
 export {
   getAllContacts,
-  findById,
+  getContactById,
   createContact,
   deleteContact,
   updateContact,
