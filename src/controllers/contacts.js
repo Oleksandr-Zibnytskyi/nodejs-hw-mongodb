@@ -69,7 +69,7 @@ async function deleteContact(req, res, next) {
     return next(createHttpError(404, 'Contact not found'));
   }
 
-  res.send({ status: 204, message: 'Contact deleted', data: result });
+  res.status(204).send();
 }
 
 export { getContacts, getContactById, createContact, updateContact, deleteContact };
