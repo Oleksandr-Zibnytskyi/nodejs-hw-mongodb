@@ -38,20 +38,20 @@ async function getAllContacts({
   };
 }
 
-function getContactById(id) {
-  return Contact.findById(id);
+function getContactById(contactId) {
+  return Contact.findById(contactId);
 }
 
 function createContact(contact) {
   return Contact.create(contact);
 }
 
-function updateContact(id, contact) {
-  return Contact.findByIdAndUpdate(id, contact, { new: true });
+function updateContact(contactId, contact) {
+  return Contact.findByIdAndUpdate(contactId, contact, { new: true });
 }
 
-function deleteContact(id) {
-  return Contact.findByIdAndDelete(id);
+function deleteContact(contactId) {
+  return Contact.findByIdAndDelete(contactId);
 }
 
 export {

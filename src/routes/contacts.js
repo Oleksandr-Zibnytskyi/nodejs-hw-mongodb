@@ -17,7 +17,7 @@ import {ctrlWrapper} from '../utils/ctrlWrapper.js';
 const router = Router();
 const jsonParser = express.json();
 
-router.get('/contacts', ctrlWrapper(getContactsController,));
+router.get('/contacts', ctrlWrapper(getContactsController));
 
 router.get('/contacts/:contactId', isValidId, ctrlWrapper(getContactIdController));
 
