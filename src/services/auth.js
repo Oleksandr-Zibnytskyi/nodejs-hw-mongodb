@@ -4,7 +4,7 @@ import createHttpError from 'http-errors';
 
 import { FIFTEEN_MINUTES, ONE_DAY } from '../constants/index.js';
 import { SessionsCollection } from '../db/models/session.js';
-import { UsersCollection } from '../db/models/contacts.js';
+import { UsersCollection } from '../db/models/user.js';
 
 
 export const registerUser = async (payload) => {
