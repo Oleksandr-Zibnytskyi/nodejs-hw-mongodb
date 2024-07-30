@@ -11,10 +11,12 @@ import {
   createContactController,
   changeContactController,
   deleteContactController,
+  upsertContactController,
 } from '../controllers/contacts.js';
 import {ctrlWrapper} from '../utils/ctrlWrapper.js';
 
 const router = Router();
+
 const jsonParser = express.json();
 
 router.get('/contacts', ctrlWrapper(getContactsController));
@@ -26,5 +28,8 @@ router.post('/contacts', jsonParser, validateBody(createContactSchema), ctrlWrap
 router.patch('/contacts/:contactId', jsonParser, isValidId, validateBody(updateContactSchema), ctrlWrapper(changeContactController));
 
 router.delete('/contacts/:contactId', isValidId, ctrlWrapper(deleteContactController));
+
+router.put('/:studentId', validateBody(createContactSchema), ctrlWrapper(upsertContactController),
+);
 
 export default router;

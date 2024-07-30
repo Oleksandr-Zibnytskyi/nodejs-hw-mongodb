@@ -6,7 +6,8 @@ const contactSchema = new Schema(
   {
     name: { type: String, required: true },
     phoneNumber: { type: String, required: true },
-    email: { type: String },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
     isFavourite: { type: Boolean, default: false },
     contactType: {
       type: String,
@@ -17,6 +18,12 @@ const contactSchema = new Schema(
   },
   { timestamps: true },
 );
+
+contactSchema.methods.toJSON = function () {
+  const obj = this.toObject();
+  delete obj.password;
+  return obj;
+};
 
 const Contact = mongoose.model('Contact', contactSchema);
 

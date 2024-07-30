@@ -1,8 +1,9 @@
 import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
-import contactsRouter from "./routes/contacts.js";
+import router from './routers/index.js';
 import { env } from './utils/env.js';
 import dotenv from 'dotenv';
 import { errorHandler } from './middlewares/errorHandler.js';
@@ -14,22 +15,21 @@ export async function setupServer() {
   const app = express();
   const PORT = Number(env('PORT', '3000'));
 
+  app.use(express.json());
   app.use(cors());
   app.use(pino({ transport: { target: 'pino-pretty' } }));
+  app.use(cookieParser());
+  app.use(router);
+  app.use(errorHandler);
+  app.use(notFoundHandler);
 
   app.set('json spaces', 2);
-
-  app.use(contactsRouter);
 
   app.get('/', (req, res) => {
     res.json({
       message: 'Hello World!',
     });
   });
-
-  app.use(errorHandler);
-
-  app.use(notFoundHandler);
 
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
