@@ -15,6 +15,8 @@ import {
 } from '../controllers/contacts.js';
 import {ctrlWrapper} from '../utils/ctrlWrapper.js';
 
+import { authenticate } from '../middlewares/authenticate.js';
+
 const router = Router();
 
 const jsonParser = express.json();
@@ -31,5 +33,9 @@ router.delete('/contacts/:contactId', isValidId, ctrlWrapper(deleteContactContro
 
 router.put('/:studentId', validateBody(createContactSchema), ctrlWrapper(upsertContactController),
 );
+
+router.use(authenticate);
+
+router.get('/', ctrlWrapper(getContactsController));
 
 export default router;
