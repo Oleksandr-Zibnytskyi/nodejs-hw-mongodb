@@ -40,10 +40,4 @@ router.patch('/:contactId', checkRoles(ROLES.TEACHER, ROLES.PARENT), jsonParser,
 
 router.delete('/:contactId', checkRoles(ROLES.TEACHER), isValidId, ctrlWrapper(deleteContactController));
 
-
-
-
-
-
-
 export default router;

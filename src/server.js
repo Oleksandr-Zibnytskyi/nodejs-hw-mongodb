@@ -36,3 +36,10 @@ export async function setupServer() {
   });
 }
 
+
+// {
+//   "name": "John Doe",
+//   "email": "johndoe@example.com",
+//   "password": "yourpassword",
+//   "role": "teacher"
+// }

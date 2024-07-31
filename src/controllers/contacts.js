@@ -62,7 +62,9 @@ export const createContactController = async (req, res) => {
 };
 
 export const changeContactController = async (req, res, next) => {
-  const contact = await updateContact(req.params.contactId, req.user._id, req.body);
+  const { contactId } = req.params;
+  const contactData = req.body;
+  const contact = await updateContact(contactId, contactData);
   if (!contact) {
     return res.status(404).json({
       status: 404,
