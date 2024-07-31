@@ -9,7 +9,7 @@ const contactSchema = new Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     isFavourite: { type: Boolean, default: false },
-    parentId: { type: Schema.Types.ObjectId, ref: 'users' },
+    userId: { type: Schema.Types.ObjectId, ref: 'users' },
     contactType: {
       type: String,
       enum: ['work', 'home', 'personal'],
