@@ -38,8 +38,13 @@ export async function setupServer() {
 
 
 // {
-//   "name": "John Doe",
 //   "email": "johndoe@example.com",
-//   "password": "yourpassword",
-//   "role": "teacher"
+//   "password": "yourpassword"
+// }
+
+
+// {
+//   "name": "Alex",
+//   "phoneNumber": "123-456-7890",
+//   "contactType": "work"
 // }
