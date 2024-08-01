@@ -37,14 +37,12 @@ export async function setupServer() {
 }
 
 
-// {
-//   "email": "johndoe@example.com",
-//   "password": "yourpassword"
-// }
 
 
 // {
 //   "name": "Alex",
+//   "email": "johndoe@example.com",
+//   "password": "yourpassword"
 //   "phoneNumber": "123-456-7890",
 //   "contactType": "work"
 // }
