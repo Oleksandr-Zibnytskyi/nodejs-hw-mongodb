@@ -1,13 +1,15 @@
 import mongoose from 'mongoose';
 
-const { Schema } = mongoose;
+const { model, Schema } = mongoose;
 
 const contactSchema = new Schema(
   {
     name: { type: String, required: true },
     phoneNumber: { type: String, required: true },
-    email: { type: String },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
     isFavourite: { type: Boolean, default: false },
+    userId: { type: Schema.Types.ObjectId, ref: 'users' },
     contactType: {
       type: String,
       enum: ['work', 'home', 'personal'],
@@ -15,9 +17,13 @@ const contactSchema = new Schema(
       default: 'personal',
     },
   },
-  { timestamps: true },
+  {
+    timestamps: true,
+    versionKey: false,
+  },
 );
 
-const Contact = mongoose.model('Contact', contactSchema);
+export const ContactsCollection = model('contacts', contactSchema);
 
-export default Contact;
+
+
