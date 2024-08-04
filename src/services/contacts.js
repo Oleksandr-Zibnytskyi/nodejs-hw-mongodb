@@ -40,7 +40,10 @@ export const getAllContacts = async ({
 };
 
 export const getContactById = async (contactId, userId) => {
-  return await ContactsCollection.findOne(contactId, userId);
+  return await ContactsCollection.findOne({
+    _id: contactId,
+    userId,
+  });
 };
 
 
@@ -48,12 +51,40 @@ export const createContact = async (contactData) => {
   return await ContactsCollection.create(contactData);
 };
 
-export const updateContact = async (contactId, contact) => {
-  return ContactsCollection.findByIdAndUpdate(contactId, contact, { new: true });
+
+export const updateContact = async (
+  contactId,
+  payload,
+  userId,
+  options = {
+    upsert: true,
+  },
+) => {
+  const contact = await ContactsCollection.findOneAndUpdate(
+    {
+      _id: contactId,
+      userId,
+    },
+    payload,
+    {
+      new: true,
+      includeResultMetadata: true,
+      ...options,
+    },
+  );
+  if (!contact || !contact.value) return null;
+
+  return {
+    contact: contact.value,
+    isNew: Boolean(contact?.lastErrorObject?.upserted),
+  };
 };
 
 export const deleteContact = async (contactId, userId) => {
-  return await ContactsCollection.findOneAndDelete(contactId, userId);
+  return await ContactsCollection.findOneAndDelete({
+    _id: contactId,
+    userId,
+  });
 };
 
 
