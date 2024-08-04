@@ -4,8 +4,7 @@ import {
   getContactById,
   createContact,
   updateContact,
-  deleteContact,
-  upsertContact
+  deleteContact
 } from '../services/contacts.js';
 import { parsePaginationParams } from '../utils/parsePaginationParams.js';
 import { parseSortParams } from '../utils/parseSortParams.js';
@@ -77,18 +76,6 @@ export const changeContactController = async (req, res, next) => {
     });
 };
 
-export const upsertContactController = async (req, res, next) => {
-  try {
-    const { contactId } = req.params;
-    const contactData = req.body;
-
-    const contact = await upsertContact(contactId, contactData);
-
-    res.status(contact._id ? 200 : 201).json(contact);
-  } catch (error) {
-    next(error);
-  }
-};
 
 export const deleteContactController = async (req, res, next) => {
   const contact = await deleteContact(req.params.contactId, req.user._id);
