@@ -38,7 +38,7 @@ export async function setupServer() {
 
 
 
-
+// register
 // {
 //   "name": "Alex",
 //   "email": "johndoe@example.com",
@@ -47,3 +47,10 @@ export async function setupServer() {
 //   "contactType": "work"
 // }
 
+
+// create
+// {
+//   "name": "Alex",
+//   "phoneNumber": "123-456-7890",
+//   "contactType": "work"
+// }
