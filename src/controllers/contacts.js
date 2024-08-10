@@ -63,7 +63,6 @@ export const createContactController = async (req, res) => {
 export const changeContactController = async (req, res, next) => {
   const { contactId } = req.params;
   const photo = req.file;
-  const contactData = req.body;
   let photoUrl;
 
   if (photo) {
@@ -74,7 +73,7 @@ export const changeContactController = async (req, res, next) => {
     }
   }
 
-  const result = await updateContact(contactId, { contactData, photo: photoUrl }, req.user._id );
+  const result = await updateContact(contactId, { ...req.body, photo: photoUrl }, req.user._id );
   if (!result) {
     return res.status(404).json({
       status: 404,

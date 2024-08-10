@@ -11,7 +11,9 @@ import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { UPLOAD_DIR } from './constants/index.js';
 
 dotenv.config();
-
+console.log('Loaded environment variables:');
+console.log('PORT:', process.env.PORT);
+console.log('CLOUD_NAME:', process.env.CLOUD_NAME);
 
 export async function setupServer() {
   const app = express();

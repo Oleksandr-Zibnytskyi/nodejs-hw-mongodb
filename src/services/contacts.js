@@ -56,9 +56,7 @@ export const updateContact = async (
   contactId,
   payload,
   userId,
-  options = {
-    upsert: true,
-  },
+  options = {},
 ) => {
   const contact = await ContactsCollection.findOneAndUpdate(
     {
