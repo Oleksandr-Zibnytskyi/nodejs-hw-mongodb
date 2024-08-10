@@ -8,8 +8,10 @@ import { env } from './utils/env.js';
 import dotenv from 'dotenv';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
+import { UPLOAD_DIR } from './constants/index.js';
 
 dotenv.config();
+
 
 export async function setupServer() {
   const app = express();
@@ -22,6 +24,7 @@ export async function setupServer() {
   app.use(router);
   app.use(errorHandler);
   app.use(notFoundHandler);
+  app.use('/uploads', express.static(UPLOAD_DIR));
 
   app.set('json spaces', 2);
 
@@ -42,7 +45,7 @@ export async function setupServer() {
 // {
 //   "name": "Alex",
 //   "email": "johndoe@example.com",
-//   "password": "yourpassword"
+//   "password": "12345"
 //   "phoneNumber": "123-456-7890",
 //   "contactType": "work"
 // }

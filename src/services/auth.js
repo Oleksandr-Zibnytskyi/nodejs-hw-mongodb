@@ -6,15 +6,11 @@ import bcrypt from 'bcrypt';
 import createHttpError from 'http-errors';
 import jwt from 'jsonwebtoken';
 
-import { FIFTEEN_MINUTES, ONE_DAY } from '../constants/index.js';
+import { FIFTEEN_MINUTES, ONE_DAY, SMTP, TEMPLATES_DIR } from '../constants/index.js';
 import { SessionsCollection } from '../db/models/session.js';
 import { UsersCollection } from '../db/models/user.js';
-import { SMTP } from '../constants/index.js';
 import { env } from '../utils/env.js';
 import { sendEmail } from '../utils/sendMail.js';
-import { TEMPLATES_DIR } from '../constants/index.js';
-
-
 
 
 export const registerUser = async (payload) => {
@@ -100,7 +96,7 @@ export const registerUser = async (payload) => {
   };
 
 
-  export const requestResetToken = async (email) => {
+  export const requestResetEmail = async (email) => {
     const user = await UsersCollection.findOne({ email });
     if (!user) {
       throw createHttpError(404, 'User not found');
@@ -112,7 +108,7 @@ export const registerUser = async (payload) => {
       },
       env('JWT_SECRET'),
       {
-        expiresIn: '15m',
+        expiresIn: '5m',
       },
     );
 
