@@ -13,7 +13,7 @@ router.post('/login', jsonParser, validateBody(loginUserSchema), ctrlWrapper(log
 
 router.post('/logout', ctrlWrapper(logoutUserController));
 
-router.post('/refresh', ctrlWrapper(refreshUserSessionController));
+router.post('/refresh', jsonParser, ctrlWrapper(refreshUserSessionController));
 
 router.post('/request-reset-email', jsonParser, validateBody(requestResetEmailSchema), ctrlWrapper(requestResetEmailController));
 
