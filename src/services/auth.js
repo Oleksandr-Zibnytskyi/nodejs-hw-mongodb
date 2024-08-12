@@ -96,7 +96,7 @@ export const registerUser = async (payload) => {
   };
 
 
-  export const requestResetEmail = async (email) => {
+  export const sendResetEmail = async (email) => {
     const user = await UsersCollection.findOne({ email });
     if (!user) {
       throw createHttpError(404, 'User not found');
