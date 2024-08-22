@@ -846,7 +846,7 @@
           "phoneNumber": {
             "description": "Contact's phone number",
             "type": "string",
-            "example": "+3801234567"
+            "example": "+380123456789"
           },
           "email": {
             "description": "Contact's email address",
