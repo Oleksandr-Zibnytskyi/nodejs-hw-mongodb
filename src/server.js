@@ -13,7 +13,7 @@ import { swaggerDocs } from './middlewares/swaggerDocs.js';
 
 dotenv.config();
 
-export async function startServer() {
+export async function setupServer() {
   const app = express();
   const PORT = Number(env('PORT', '3000'));
 
