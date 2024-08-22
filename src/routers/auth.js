@@ -1,7 +1,7 @@
 import express from 'express';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
-import { registerUserSchema, loginUserSchema, requestResetEmailSchema, resetPasswordSchema } from '../validation/auth.js';
-import { registerUserController, loginUserController, logoutUserController, refreshUserSessionController, requestResetEmailController, resetPasswordController  } from '../controllers/auth.js';
+import { loginWithGoogleOAuthSchema, registerUserSchema, loginUserSchema, requestResetEmailSchema, resetPasswordSchema } from '../validation/auth.js';
+import { loginWithGoogleController, getGoogleOAuthUrlController, registerUserController, loginUserController, logoutUserController, refreshUserSessionController, requestResetEmailController, resetPasswordController  } from '../controllers/auth.js';
 import { validateBody } from '../middlewares/validateBody.js';
 
 const router = express.Router();
@@ -18,5 +18,9 @@ router.post('/refresh', jsonParser, ctrlWrapper(refreshUserSessionController));
 router.post('/send-reset-email', jsonParser, validateBody(requestResetEmailSchema), ctrlWrapper(requestResetEmailController));
 
 router.post('/reset-pwd', jsonParser, validateBody(resetPasswordSchema), ctrlWrapper(resetPasswordController));
+
+router.get('/get-oauth-url', ctrlWrapper(getGoogleOAuthUrlController));
+
+router.post('/confirm-oauth', validateBody(loginWithGoogleOAuthSchema), ctrlWrapper(loginWithGoogleController),);
 
 export default router;

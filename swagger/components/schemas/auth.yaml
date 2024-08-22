@@ -1,0 +1,30 @@
+type: object
+required:
+  - name
+  - email
+  - password
+properties:
+  name:
+    type: string
+    description: "User's name"
+    example: 'Alex Doe'
+  email:
+    type: string
+    description: "User's email address"
+    format: email
+    uniqueItems: true
+    example: 'alex.doe@example.com'
+  password:
+    type: string
+    description: "User's password"
+    example: 'pswexample'
+  createdAt:
+    type: string
+    format: date-time
+    description: 'Time when the user was created'
+    example: '2023-08-02T10:20:30Z'
+  updatedAt:
+    type: string
+    format: date-time
+    description: 'Time when the user was last updated'
+    example: '2023-08-02T10:20:30Z'
