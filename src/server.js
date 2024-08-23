@@ -25,7 +25,6 @@ export async function setupServer() {
   app.use(errorHandler);
   app.use(notFoundHandler);
   app.use('/uploads', express.static(UPLOAD_DIR));
-  app.use('/uploads', express.static(UPLOAD_DIR));
   app.use('/api-docs', swaggerDocs());
 
   app.set('json spaces', 2);
