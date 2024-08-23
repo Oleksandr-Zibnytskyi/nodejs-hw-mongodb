@@ -22,12 +22,8 @@ export async function setupServer() {
   app.use(pino({ transport: { target: 'pino-pretty' } }));
   app.use(cookieParser());
   app.use(router);
-
   app.use('/uploads', express.static(UPLOAD_DIR));
   app.use('/api-docs', swaggerDocs());
-
-  app.use(errorHandler);
-  app.use(notFoundHandler);
 
   app.set('json spaces', 2);
 
@@ -36,6 +32,9 @@ export async function setupServer() {
       message: 'Hello World!',
     });
   });
+
+  app.use(errorHandler);
+  app.use(notFoundHandler);
 
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
