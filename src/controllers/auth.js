@@ -5,13 +5,10 @@ import {
   refreshUsersSession,
   resetPassword,
   sendResetEmail,
-  loginOrSignupWithGoogle
+  loginOrSignupWithGoogle,
 } from '../services/auth.js';
 import { ONE_DAY } from '../constants/index.js';
 import { generateAuthUrl } from '../utils/googleOAuth2.js';
-
-
-
 
 export const registerUserController = async (req, res) => {
   const user = await registerUser(req.body);

@@ -2,10 +2,10 @@ import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-
-import router from './routers/index.js';
-import { env } from './utils/env.js';
 import dotenv from 'dotenv';
+import router from './routers/index.js';
+
+import { env } from './utils/env.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { UPLOAD_DIR } from './constants/index.js';
@@ -22,10 +22,12 @@ export async function setupServer() {
   app.use(pino({ transport: { target: 'pino-pretty' } }));
   app.use(cookieParser());
   app.use(router);
-  app.use(errorHandler);
-  app.use(notFoundHandler);
+
   app.use('/uploads', express.static(UPLOAD_DIR));
   app.use('/api-docs', swaggerDocs());
+
+  app.use(errorHandler);
+  app.use(notFoundHandler);
 
   app.set('json spaces', 2);
 
